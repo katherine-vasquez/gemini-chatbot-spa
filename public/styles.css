@@ -144,8 +144,18 @@ button {
 }
 
 /* CHAT */
+/* The chat view fills the available viewport height (navbar aside) on
+   every screen size, and the message box grows to take up the leftover
+   space so the input row always sits at the bottom instead of floating
+   mid-page with empty space below it. */
+.chatView {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 110px);
+}
+
 .chat-box {
-  height: 320px;
+  flex: 1;
   overflow-y: auto;
   border: 1px solid #2a2a3d;
   border-radius: 8px;
@@ -324,21 +334,6 @@ button {
   .homeView .infoCard,
   .aboutView .infoCard {
     width: 100%;
-  }
-
-  /* The chat isn't centered like Home/About (that would leave the
-     message box floating with empty space above and below). Instead,
-     the message box GROWS to fill the available height, like a real
-     chat app. The input always stays pinned to the bottom. */
-  .chatView {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 110px);
-  }
-
-  .chatView .chat-box {
-    flex: 1;
-    height: auto; /* overrides the fixed 320px height used on mobile */
   }
 }
 
