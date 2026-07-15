@@ -40,7 +40,7 @@ folder, then drop in a table like this:
 
 - HTML / CSS (mobile-first) / JavaScript (Vanilla, ES Modules)
 - Google Gemini AI (`@google/generative-ai`), with automatic fallback across 3 models
-  (`gemini-2.5-flash` → `gemini-2.5-flash-lite` → `gemini-3.5-flash`)
+  (`gemini-3.5-flash` → `gemini-3.1-flash-lite` → `gemini-3-flash-preview`)
 - Vercel Serverless Functions (secure proxy to Gemini)
 - Vitest (unit testing)
 - History API (SPA routing without page reloads)
@@ -149,11 +149,11 @@ timestamp formatting.
   response (prevents hitting the request rate limit by sending messages too fast).
 - The full conversation history is sent with every request to Gemini (via
   `model.startChat`), so the character keeps context during the session.
-- **Automatic fallback across models**: if `gemini-2.5-flash` is rate-limited (429) or
-  the service is unavailable (503), the Serverless Function automatically retries with
-  `gemini-2.5-flash-lite` and then `gemini-3.5-flash`, within the same request. If all
-  3 fail, a visual countdown appears in the chat showing how long to wait before
-  retrying.
+- **Automatic fallback across models**: if `gemini-3.5-flash` is rate-limited (429),
+  unavailable (503), or has been deprecated/retired by Google (404), the Serverless
+  Function automatically retries with `gemini-3.1-flash-lite` and then
+  `gemini-3-flash-preview`, within the same request. If all 3 fail, a visual countdown
+  appears in the chat showing how long to wait before retrying.
 - The Gemini API key is never exposed on the frontend: every call to Gemini goes
   through the Serverless Function at `/api/functions`, which validates the HTTP method
   and body before processing.

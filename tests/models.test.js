@@ -25,9 +25,12 @@ describe("isRateLimitError", () => {
 });
 
 describe("isTransientError", () => {
-  it("treats 429 and 503 as errors worth retrying with another model", () => {
+  it("treats 429, 503, and 404 as errors worth retrying with another model", () => {
     expect(isTransientError({ status: 429 })).toBe(true);
     expect(isTransientError({ status: 503 })).toBe(true);
+    // 404 covers a model name that's been deprecated/retired — trying the
+    // next model in the list is the right move, not a dead end.
+    expect(isTransientError({ status: 404 })).toBe(true);
   });
 
   it("does not treat other errors as transient (not worth switching models)", () => {
