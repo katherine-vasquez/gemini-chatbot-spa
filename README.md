@@ -20,21 +20,24 @@ attempts that try to break character.
 
 ## Demo
 
-- **Deployed URL:** add your deployment link here after running `npx vercel --prod`
+- **Deployed URL:** https://gemini-chatbot-spa.vercel.app/
 - **GitHub repository:** https://github.com/katherine-vasquez/gemini-chatbot-spa
 
 ### Screenshots
 
-Add screenshots of Home / Chat / About (mobile, tablet, desktop) to a `screenshots/`
-folder, then drop in a table like this:
+**Chat, responsive across breakpoints:**
 
-```markdown
-| | Mobile | Tablet | Desktop |
-|---|---|---|---|
-| **Home** | <img src="./screenshots/home-mobile.png" width="180"/> | <img src="./screenshots/home-tablet.png" width="260"/> | <img src="./screenshots/home-desktop.png" width="260"/> |
-| **Chat** | <img src="./screenshots/chat-mobile.png" width="180"/> | <img src="./screenshots/chat-tablet.png" width="260"/> | <img src="./screenshots/chat-desktop.png" width="260"/> |
-| **About** | <img src="./screenshots/about-mobile.png" width="180"/> | <img src="./screenshots/about-tablet.png" width="260"/> | <img src="./screenshots/about-desktop.png" width="260"/> |
-```
+| Mobile | Tablet | Desktop |
+|---|---|---|
+| <img src="./screenshots/chat-mobile.png" width="200"/> | <img src="./screenshots/chat-tablet.png" width="280"/> | <img src="./screenshots/chat-desktop.png" width="360"/> |
+
+**Home:**
+
+<img src="./screenshots/home-desktop.png" width="500"/>
+
+**About:**
+
+<img src="./screenshots/about-desktop.png" width="500"/>
 
 ## Tech stack
 
@@ -65,7 +68,7 @@ gemini-chatbot-spa/
 │   ├── utils.test.js
 │   ├── app.test.js
 │   └── models.test.js
-├── screenshots/               # Add your own screenshots here (see above)
+├── screenshots/               # Screenshots used in this README
 ├── .env.example
 ├── vercel.json
 ├── vitest.config.js
