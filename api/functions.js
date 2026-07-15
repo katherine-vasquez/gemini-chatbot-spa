@@ -24,9 +24,8 @@ export default async function handler(req, res) {
   let lastError = null;
 
   // Try the models in MODEL_FALLBACK_LIST in order. If one is rate-limited
-  // (429), automatically move to the next one, within the same request
-  // (strategy explained in class to keep the app working when a model
-  // runs out of quota).
+  // (429), automatically move to the next one, within the same request —
+  // keeps the app responsive even when a specific model runs out of quota.
   for (const modelName of MODEL_FALLBACK_LIST) {
     try {
       const model = genAI.getGenerativeModel({

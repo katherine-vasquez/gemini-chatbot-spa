@@ -11,7 +11,7 @@ export function isEmpty(text) {
 }
 
 // Decides which view corresponds to a URL. Returns null if the route
-// doesn't exist, so the router can show a 404 view (FSM3L2).
+// doesn't exist, so the router can show a 404 view.
 export function resolveRoute(pathname) {
   if (pathname === "/" || pathname === "/home") return "home";
   if (pathname === "/chat") return "chat";
@@ -41,8 +41,7 @@ export function parseGeminiReply(data) {
 }
 
 // Converts the "retryDelay" returned by the Gemini API (e.g. "8s") into a
-// number of seconds. If it's missing or unreadable, defaults to 60s (as
-// suggested in class).
+// number of seconds. If it's missing or unreadable, defaults to a safe 60s.
 export function parseRetryDelaySeconds(retryDelay) {
   if (!retryDelay) return 60;
   const match = String(retryDelay).match(/(\d+)/);
@@ -51,7 +50,7 @@ export function parseRetryDelaySeconds(retryDelay) {
 
 // Makes the actual call to /api/functions. Exported as its own function
 // (instead of inlining it in app.js) so it can be tested with mocked
-// fetch without ending up with a "circular test" (FSM3L8).
+// fetch without ending up with a "circular test".
 export async function sendChatMessage(message, history) {
   const res = await fetch("/api/functions", {
     method: "POST",

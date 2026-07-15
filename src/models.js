@@ -1,6 +1,6 @@
 // List of Gemini models to try, in order of preference. gemini-2.5-flash
-// was tested first because it's the one recommended in the course and has
-// no internal "thinking" that eats into the output token budget.
+// is tried first because it has no internal "thinking" step that eats
+// into the output token budget.
 // gemini-3.5-flash is kept as an extra fallback: it's newer, but being a
 // "reasoning" model it needs a higher maxOutputTokens so it doesn't cut
 // its response off halfway through.

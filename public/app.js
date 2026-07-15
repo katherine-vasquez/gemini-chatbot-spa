@@ -13,7 +13,7 @@ const app = document.getElementById("app");
 const navLinks = document.querySelectorAll("#navbar .navLink");
 
 // When the app loads, we restore the saved history (if any) instead of
-// always starting from scratch. Extra credit: persistence with localStorage.
+// always starting from scratch — persisted via localStorage.
 let messages = loadHistory();
 
 // -------------------- HOME --------------------
@@ -62,10 +62,9 @@ function renderAbout() {
       <div class="infoCard">
         <h2>The Project</h2>
         <p>
-          Solstice Chat is a Single Page Application built as the Module 3
-          Integrator Project. It lets you chat with Solstice using Google
-          Gemini AI, with routing implemented via the History API and a
-          mobile-first design.
+          Solstice Chat is a Single Page Application that lets you chat with
+          Solstice using Google Gemini AI, with routing implemented via the
+          History API and a mobile-first design.
         </p>
       </div>
 
@@ -184,9 +183,9 @@ function renderMessages() {
 
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  // Extra credit: we only persist the "real" messages (neither the
-  // "typing..." indicator nor the 429 countdown messages are worth
-  // saving for the next time the chat is opened).
+  // We only persist the "real" messages (neither the "typing..."
+  // indicator nor the 429 countdown messages are worth saving for the
+  // next time the chat is opened).
   const persistable = messages.filter((m) => !m.isTyping && !m.isCountdown);
 
   if (persistable.length > 0) {
@@ -221,7 +220,7 @@ async function sendMessage() {
 
   // Lock the input and button while waiting for a response: prevents the
   // user from sending several messages within a second and triggering a
-  // 429 from too many requests (suggested in class).
+  // 429 from too many requests.
   input.disabled = true;
   sendBtn.disabled = true;
 
@@ -265,8 +264,7 @@ function unlockChatInput() {
 }
 
 // Shows "I'm busy... wait Ns" and counts down every second. Once it hits
-// 0, unlocks the chat so the user can type again. (Strategy explained in
-// class for handling 429s.)
+// 0, unlocks the chat so the user can type again.
 function runRateLimitCountdown(seconds) {
   let remaining = seconds;
 

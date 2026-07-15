@@ -1,34 +1,32 @@
 # Solstice Chat ✨
 
-Single Page Application that lets you chat with **Solstice**, an original character
-created for this project, using Google Gemini AI, with the API key protected behind a
-Vercel Serverless Function.
+A Single Page Application chatbot that lets you talk to **Solstice**, an original
+character, powered by Google Gemini AI — with the API key protected behind a Vercel
+Serverless Function.
 
-> Module 3 Integrator Project — Full Stack Development.
+> Built to demonstrate production-minded frontend architecture: client-side routing
+> without a framework, a secure API layer, graceful degradation under rate limits, and
+> full test coverage.
 
-## Chosen character
+## The character
 
-**Solstice.** An original character created specifically for this project (not based
-on, or affiliated with, any existing franchise), so the project is safe to share
-publicly without copyright concerns. By day she's Mia Reyes, an engineering student in
-the fictional Meridian City; after a lab accident she gained the ability to generate
-and shape solid light. She's witty, warm, and a bit of a science nerd — a personality
-that lends itself well to a dynamic, entertaining chat. The full system prompt that
-defines her personality lives in [`src/chat.js`](./src/chat.js): it defines her role,
-tone, and limits, and keeps her resistant to requests that try to break character (for
-example, asking her to solve programming exercises).
+**Solstice** is an original character created for this project (not affiliated with
+any existing franchise). By day she's Mia Reyes, an engineer in the fictional Meridian
+City; after a lab accident she gained the ability to generate and shape solid light.
+Witty, warm, and a bit of a science nerd — a personality suited for a dynamic,
+entertaining chat. Her full system prompt lives in [`src/chat.js`](./src/chat.js): it
+defines her role, tone, and limits, and keeps her resistant to prompt-injection
+attempts that try to break character.
 
 ## Demo
 
 - **Deployed URL:** add your deployment link here after running `npx vercel --prod`
-- **GitHub repository:** add your repository link here
+- **GitHub repository:** https://github.com/katherine-vasquez/gemini-chatbot-spa
 
 ### Screenshots
 
-This version replaced the original character with an original one, so the app's
-screenshots need to be retaken. After you deploy (or run `npx vercel dev` locally),
-capture Home / Chat / About at mobile, tablet, and desktop widths, drop them into a
-`screenshots/` folder, and add a table here, for example:
+Add screenshots of Home / Chat / About (mobile, tablet, desktop) to a `screenshots/`
+folder, then drop in a table like this:
 
 ```markdown
 | | Mobile | Tablet | Desktop |
@@ -50,7 +48,7 @@ capture Home / Chat / About at mobile, tablet, and desktop widths, drop them int
 ## Project structure
 
 ```
-solstice-chat/
+gemini-chatbot-spa/
 ├── api/
 │   └── functions.js       # Serverless Function: secure proxy to Gemini
 ├── public/
@@ -89,8 +87,8 @@ solstice-chat/
 
 1. Clone the repository and enter the folder:
 ```bash
-   git clone https://github.com/YOUR_USERNAME/solstice-chat.git
-   cd solstice-chat
+   git clone https://github.com/katherine-vasquez/gemini-chatbot-spa.git
+   cd gemini-chatbot-spa
 ```
 
 2. Install dependencies:
@@ -137,7 +135,7 @@ timestamp formatting.
 4. If something doesn't work in production, check the Vercel dashboard:
    **Functions → Runtime Logs**, where the actual serverless function error shows up.
 
-## Implemented functionality
+## Features
 
 - SPA routing (`/home`, `/chat`, `/about`) with the History API: real `<a>` links,
   selective click interception, `popstate` handling, a 404 view for unknown routes, a
@@ -162,7 +160,7 @@ timestamp formatting.
 - The system prompt includes explicit instructions so the character doesn't break role
   under "prompt injection" attempts (asking for code, ignoring instructions, etc.).
 
-## Extra credit implemented
+## Additional features
 
 **History persistence with `localStorage`:**
 - The conversation history is saved automatically with every message.
@@ -170,30 +168,29 @@ timestamp formatting.
 - A "Clear history" button that wipes the conversation and `localStorage`.
 - A visual indicator ("💾 History saved") that only appears when something is saved.
 
-**Additional chat features:**
+**Chat UX details:**
 - Timestamps below each message.
 - Animated "typing..." indicator with dots, instead of static text.
 - Enter key to send a message, in addition to the button.
 - A button to copy any Solstice reply to the clipboard, with visual confirmation
   (✅) on copy.
 
-## AI usage log for this project
+## AI-assisted development
 
-Claude (Anthropic) was used as an assistant during development to:
+This project was built with Claude (Anthropic) as a pair-programming assistant, used
+to:
 
-- Design and write the system prompt that defines Solstice's personality in
-  `src/chat.js` (an original character, created to avoid any copyright/trademark
-  issues with using an existing franchise character in a publicly shared portfolio
-  project), following the class checklist (role, tone, limits, response length), and
-  harden it against out-of-character requests.
-- Implement a fallback system across 3 Gemini models (following the strategy explained
-  in class), including differentiated handling of 429 (quota exhausted) and 503
-  (service overloaded) errors, and tuning `maxOutputTokens` for models that use
-  internal reasoning before responding.
-- Draft the `README.md` documentation and translate the full project (UI, comments,
-  docs) into English for an international portfolio audience.
+- Design and iterate on the system prompt that defines Solstice's personality in
+  `src/chat.js` — role, tone, response limits, and hardening against attempts to break
+  character.
+- Implement the multi-model fallback strategy in the serverless function, including
+  differentiated handling of 429 (quota exhausted) and 503 (service overloaded)
+  errors, and tuning `maxOutputTokens` for models that reason internally before
+  responding.
+- Translate the project into English and prepare the documentation for a public
+  portfolio.
 
-## Future improvements
+## Roadmap
 
 - A selection gallery for multiple original characters.
 

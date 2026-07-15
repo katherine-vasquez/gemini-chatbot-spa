@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { sendChatMessage } from "../public/utils.js";
 
-// Global fetch mock (FSM3L8): we test the real function that calls fetch,
+// Global fetch mock: we test the real function that calls fetch,
 // not a "loose" fetch inside the test (that would be a circular test).
 describe("sendChatMessage (mocked fetch, no network)", () => {
   beforeEach(() => {
