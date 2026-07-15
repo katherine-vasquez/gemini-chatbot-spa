@@ -1,0 +1,24 @@
+
+{
+  "name": "solstice-chat",
+  "version": "1.0.0",
+  "description": "Chat with Solstice, an original character, using Google Gemini AI and Vercel Serverless Functions",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "keywords": [],
+  "author": "Katherine Vasquez",
+  "license": "ISC",
+  "devDependencies": {
+    "vercel": "^54.18.2",
+    "vitest": "^4.1.9"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
+  }
+}

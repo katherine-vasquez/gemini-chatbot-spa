@@ -1,0 +1,354 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0f0f1a;
+  color: white;
+}
+
+/* MAIN CONTAINER */
+#app {
+  padding: 20px;
+}
+
+/* TITLES */
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* BUTTONS */
+button {
+  padding: 10px 15px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ===== MOBILE FIRST (base) ===== */
+button {
+  background: #4f46e5;
+  color: white;
+}
+
+/* Fixed navbar (Home / Chat / About), visible on every view */
+.navbar {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  background: #16162a;
+  border-bottom: 1px solid #2a2a3d;
+  padding: 14px 16px;
+}
+
+.navbar .navLink {
+  display: inline;
+  background: none;
+  padding: 4px 2px;
+  margin-top: 0;
+  color: #aab;
+  font-weight: 500;
+}
+
+.navbar .navLink:hover {
+  background: none;
+  color: white;
+}
+
+.navbar .navLink.active {
+  color: white;
+  border-bottom: 2px solid #4f46e5;
+}
+
+/* Button-styled navigation links (used outside the navbar) */
+.navLink {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  background: #4338ca;
+}
+
+/* Short subtitle below the h1 (Home) */
+.tagline {
+  color: #c7c7e0;
+  margin-bottom: 16px;
+}
+
+/* Home container: centers image, title, and button; the card text
+   stays left-aligned for better readability */
+.homeView {
+  text-align: center;
+}
+
+.homeView .infoCard {
+  text-align: left;
+}
+
+/* Circular frame for the character image (Home) */
+.heroImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  border: 3px solid #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.heroImage img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+/* Info card (Home and About) */
+.infoCard {
+  background: #232342;
+  border: 1px solid #3a3a5c;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.infoCard h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #b7b3ff;
+}
+
+.infoCard p,
+.infoCard li {
+  color: #e6e6f0;
+  line-height: 1.5;
+}
+
+.infoCard ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+/* CHAT */
+.chat-box {
+  height: 320px;
+  overflow-y: auto;
+  border: 1px solid #2a2a3d;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #16162a;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.msg {
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: #4f46e5;
+  color: white;
+}
+
+.msg-bot {
+  align-self: flex-start;
+  background: #2a2a3d;
+  color: #e6e6f0;
+}
+
+/* Time shown below each message */
+.msgTime {
+  display: block;
+  font-size: 11px;
+  color: #9d9dc7;
+  margin-top: 4px;
+}
+
+/* "Copy" button on Solstice's replies */
+.copyBtn {
+  margin-top: 0;
+  margin-left: 6px;
+  padding: 0 4px;
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #b7b3ff;
+  vertical-align: middle;
+}
+
+.copyBtn:hover {
+  color: white;
+}
+
+/* Animated dots for the "typing..." indicator */
+.typingDots {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.typingDots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #b7b3ff;
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+
+.typingDots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingDots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Top row of the chat: saved-history indicator + clear button */
+.chat-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  min-height: 28px;
+}
+
+.historyBadge {
+  font-size: 13px;
+  color: #9d9dc7;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.historyBadge.visible {
+  opacity: 1;
+}
+
+.clearBtn {
+  padding: 6px 12px;
+  margin-top: 0;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid #4f46e5;
+  color: #b7b3ff;
+}
+
+.clearBtn:hover {
+  background: #2a2a5c;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #2a2a3d;
+  background: #1a1a2e;
+  color: white;
+}
+
+.chat-input-row button {
+  margin-top: 0;
+}
+
+/* Disabled state: makes it clear the chat is locked while waiting
+   for a Gemini response, or during the 429 countdown */
+.chat-input-row input:disabled,
+.chat-input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  #app {
+    max-width: 700px;
+    margin: auto;
+  }
+
+  /* On larger screens, the Home/About content stays "stuck at the
+     top" leaving empty space below. We center it vertically within the
+     available screen height (roughly subtracting the navbar's height).
+     On mobile we leave it as is: at the top, with normal scrolling. */
+  .homeView,
+  .aboutView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: calc(100vh - 110px);
+  }
+
+  .homeView .infoCard,
+  .aboutView .infoCard {
+    width: 100%;
+  }
+
+  /* The chat isn't centered like Home/About (that would leave the
+     message box floating with empty space above and below). Instead,
+     the message box GROWS to fill the available height, like a real
+     chat app. The input always stays pinned to the bottom. */
+  .chatView {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 110px);
+  }
+
+  .chatView .chat-box {
+    flex: 1;
+    height: auto; /* overrides the fixed 320px height used on mobile */
+  }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 42px;
+  }
+
+  #app {
+    max-width: 900px;
+  }
+}
