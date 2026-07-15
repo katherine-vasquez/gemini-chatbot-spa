@@ -5,14 +5,29 @@
   font-family: Arial, sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
   background: #0f0f1a;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 /* MAIN CONTAINER */
+/* flex: 1 makes #app fill whatever height is left under the navbar,
+   whatever that navbar's actual rendered height turns out to be — no
+   guessing a pixel number that then breaks when a breakpoint changes a
+   font size. Views that don't need to fill the screen (Home, About on
+   mobile) just don't opt into stretching further down this chain. */
 #app {
   padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* TITLES */
@@ -144,15 +159,16 @@ button {
 }
 
 /* CHAT */
-/* The chat view is pinned to the available viewport height (navbar
-   aside) on every screen size — not just a minimum, an actual cap — so
-   the page itself never grows taller than one screen. The message box
-   takes up the leftover space and scrolls internally as messages pile
-   up, instead of pushing the whole page (and the input) further down. */
+/* flex: 1 + min-height: 0 caps the chat view at exactly the space #app
+   has left, on every screen size, with no hardcoded pixel guess. The
+   message box (below) then takes the leftover space under the title and
+   scrolls internally as messages pile up, instead of pushing the input
+   row off the bottom of the screen. */
 .chatView {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 110px);
+  flex: 1;
+  min-height: 0;
 }
 
 .chat-box {
@@ -321,8 +337,8 @@ button {
   }
 
   /* On larger screens, the Home/About content stays "stuck at the
-     top" leaving empty space below. We center it vertically within the
-     available screen height (roughly subtracting the navbar's height).
+     top" leaving empty space below. We center it vertically within
+     whatever height #app has left (flex: 1, no hardcoded pixel guess).
      On mobile we leave it as is: at the top, with normal scrolling. */
   .homeView,
   .aboutView {
@@ -330,7 +346,8 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    min-height: calc(100vh - 110px);
+    flex: 1;
+    min-height: 0;
   }
 
   .homeView .infoCard,
