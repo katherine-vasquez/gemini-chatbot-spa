@@ -144,18 +144,20 @@ button {
 }
 
 /* CHAT */
-/* The chat view fills the available viewport height (navbar aside) on
-   every screen size, and the message box grows to take up the leftover
-   space so the input row always sits at the bottom instead of floating
-   mid-page with empty space below it. */
+/* The chat view is pinned to the available viewport height (navbar
+   aside) on every screen size — not just a minimum, an actual cap — so
+   the page itself never grows taller than one screen. The message box
+   takes up the leftover space and scrolls internally as messages pile
+   up, instead of pushing the whole page (and the input) further down. */
 .chatView {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 110px);
+  height: calc(100vh - 110px);
 }
 
 .chat-box {
   flex: 1;
+  min-height: 0; /* lets a flex child actually shrink/scroll instead of growing with its content */
   overflow-y: auto;
   border: 1px solid #2a2a3d;
   border-radius: 8px;
